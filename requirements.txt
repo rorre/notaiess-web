@@ -1,0 +1,6 @@
+starlette
+aiosqlite
+git+git://github.com/rorre/notAiess@master#egg=notAiess
+aiofiles
+authlib
+aenum

@@ -1,0 +1,4 @@
+db_file = "app.db" # sqlite file
+osu_token = "" # osu! API token
+client_id= "" # Discord token
+client_secret= "" # Discord secret

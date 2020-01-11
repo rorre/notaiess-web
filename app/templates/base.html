@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta
+        content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+        <!-- Bootstrap CSS -->
+        <link crossorigin="anonymous" href="./css/bootstrap.min.css" rel="stylesheet">
+
+        <title>notAiess</title>
+    </head>
+
+    <body>
+        <div class="container">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <span class="navbar-brand mb-0 h1">notAiess</span>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/rorre/notAiess">GitHub</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://osu.ppy.sh/u/-Keitaro">osu!</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <a href="https://paypal.me/rendyak"><img alt="Donate" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif"/></a>
+                    </span>
+                </div>
+            </nav>
+
+            <section id="content"> {% block body %}{% endblock %}
+
+                <!-- Modal -->
+                <div aria-hidden="true" aria-labelledby="hookEditModalLabel" class="modal fade" id="hookEditModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="hookEditModalLabel">Edit hook</h5>
+                                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form id="form_data_edit">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label" for="hookurledit">Hook URL</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" id="hookurledit" type="text" disabled>
+                                            </div>
+                                        </div>
+
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <legend class="col-form-label col-sm-2 pt-0">Game mode</legend>
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="modalRadios2" name="std" type="checkbox">
+                                                        <label class="form-check-label" for="modalRadios2">
+                                                            osu!standard
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modalRadios3" name="taiko" type="checkbox">
+                                                        <label class="form-check-label" for="modalRadios3">
+                                                            osu!taiko
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modalRadios4" name="catch" type="checkbox">
+                                                        <label class="form-check-label" for="modalRadios4">
+                                                            osu!catch
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modalRadios5" name="mania" type="checkbox">
+                                                        <label class="form-check-label" for="modalRadios5">
+                                                            osu!mania
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <legend class="col-form-label col-sm-2 pt-0">Status</legend>
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="modaltext1" name="bubble" type="checkbox">
+                                                        <label class="form-check-label" for="modaltext1">
+                                                            Bubble
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modaltext2" name="qualify" type="checkbox">
+                                                        <label class="form-check-label" for="modaltext2">
+                                                            Qualify
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modaltext3" name="disqualify" type="checkbox">
+                                                        <label class="form-check-label" for="modaltext3">
+                                                            Disqualify
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modaltext4" name="pop" type="checkbox">
+                                                        <label class="form-check-label" for="modaltext4">
+                                                            Nomination reset
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modaltext5" name="ranked" type="checkbox">
+                                                        <label class="form-check-label" for="modaltext5">
+                                                            Ranked
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check disabled">
+                                                        <input class="form-check-input" id="modaltext6" name="loved" type="checkbox">
+                                                        <label class="form-check-label" for="modaltext6">
+                                                            Loved
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                                <button class="btn btn-primary" id="btn-send" type="button">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script crossorigin="anonymous" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="./js/main.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

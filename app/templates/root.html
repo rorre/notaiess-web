@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">About</h5>
+      <p class="card-text">notAiess is a Discord Webhook that sends all mapset activity from osu!. Whether it be nomination, pops, qualification, ranked, or loved.<br>It is run on Python 3 and open source.</p>
+      <p>Here you can add your own webhook to the list so everytime a map event occured, you will be notified. You can also run it by yourself or if you want it for other different purpose.</p>
+      <a href="https://github.com/rorre/notAiess" class="card-link">GitHub</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="alerts">{% if extras %} {{ extras | safe }} {% endif %}</div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Add Hook</h5>
+      {% if not username %}
+      <a href="{{ url_for('login') }}" id="login" class="btn btn-primary">Log in with Discord</a>
+      {% else %}
+      <p>Logged in as: {{ username }} | <a href="{{ url_for('logout') }}">Logout</a></p>
+      <form id="form_data">
+        <div class="form-group row">
+          <label for="hookurl" class="col-sm-2 col-form-label">Hook URL</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="hookurl">
+          </div>
+        </div>
+
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Game mode</legend>
+            <div class="col-sm-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="std" id="gridRadios2">
+                <label class="form-check-label" for="gridRadios2">
+                  osu!standard
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="taiko" id="gridRadios3">
+                <label class="form-check-label" for="gridRadios3">
+                  osu!taiko
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="catch" id="gridRadios4">
+                <label class="form-check-label" for="gridRadios4">
+                  osu!catch
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="mania" id="gridRadios5">
+                <label class="form-check-label" for="gridRadios5">
+                  osu!mania
+                </label>
+              </div>
+            </div>
+
+            <legend class="col-form-label col-sm-2 pt-0">Status</legend>
+            <div class="col-sm-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="bubble" id="gridtext1">
+                <label class="form-check-label" for="gridtext1">
+                  Bubble
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="qualify" id="gridtext2">
+                <label class="form-check-label" for="gridtext2">
+                  Qualify
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="disqualify" id="gridtext3">
+                <label class="form-check-label" for="gridtext3">
+                  Disqualify
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="pop" id="gridtext4">
+                <label class="form-check-label" for="gridtext4">
+                  Nomination reset
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="ranked" id="gridtext5">
+                <label class="form-check-label" for="gridtext5">
+                  Ranked
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="checkbox" name="loved" id="gridtext6">
+                <label class="form-check-label" for="gridtext6">
+                  Loved
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-group row">
+          <div class="col">
+            <button type="submit" class="btn btn-primary" id="submithook">Submit</button>
+            <button type="submit" class="btn btn-secondary" id="testhook">Test</button>
+          </div>
+        </div>
+
+
+      </form>
+      {% endif %}
+    </div>
+  </div>
+  
+  <hr>
+  {% if username %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Hook Manager</h5>
+      <p class="card-text">Here you can control your existing hooks.</p>
+      <table class="table table-responsive">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">URL</th>
+            <th scope="col">Mode</th>
+            <th scope="col">Push Status</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody id="table-content">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}
