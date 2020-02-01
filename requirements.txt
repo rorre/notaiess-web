@@ -1,6 +1,6 @@
 starlette
 aiosqlite
-git+git://github.com/rorre/notAiess@master#egg=notAiess
+git+git://github.com/rorre/Phillip@master#egg=phillip
 aiofiles
 authlib
 aenum
