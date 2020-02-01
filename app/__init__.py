@@ -103,7 +103,7 @@ async def not_found(request, exc):
     context = {
         'request': request
     }
-    return templates.TemplateResponse("400.html", context)
+    return templates.TemplateResponse("404.html", context)
 
 
 async def server_error(request, exc):
