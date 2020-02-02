@@ -17,6 +17,24 @@ const status_mapping = {
 
 var owned_hooks = {}
 
+function create_alert(alertType, alertClass, message) {
+    var alertDiv = document.createElement("div")
+    alertDiv.innerHTML = `<strong>${alertType}!</strong>`
+    if (message) {
+        alertDiv.innerHTML += ` ${message}`
+    }
+    alertDiv.setAttribute("class", "alert " + alertClass)
+
+    var button = document.createElement("button")
+    button.innerHTML = "&times;"
+    button.setAttribute("type", "button")
+    button.setAttribute("class", "close")
+    button.setAttribute("data-dismiss", "alert")
+    alertDiv.prepend(button)
+
+    document.getElementById("alerts").appendChild(alertDiv)
+}
+
 function add_data(v) {
     owned_hooks[v.id] = v
     count++
@@ -83,12 +101,12 @@ function call(method, url, data, cb) {
         url: url,
         data: data
     }).then(function (resp) {
-        $("#alerts").append(`<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Done!</strong></div>`)
+        create_alert("Done", "alert-success")
     }).catch(function (error) {
         if (error.response) {
-            $("#alerts").append(`<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Error!</strong> ${error.response.data.err}.</div>`)
+            create_alert("Error", "alert-danger", error.response.data.err)
         } else {
-            $("#alerts").append(`<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Error!</strong> ${error.message}.</div>`)
+            create_alert("Error", "alert-danger", error.message)
         }
     }).finally(function () {
         if (cb) {
